@@ -1,0 +1,33 @@
+### External libraries to install in venv
+
+# dev stuff
+ipykernel
+black
+black[jupyter]
+
+# ML stuff
+# TA-Lib # https://pypi.org/project/TA-Lib/ # https://ta-lib.org/hdr_dw.html
+# transformers
+pandas
+matplotlib
+numpy==1.21
+# torch
+# datasets
+# seaborn
+# sentence_transformers
+# sklearn
+
+# misc
+python-binance
+
+# blockchain stuff
+eth-brownie
+
+# server stuff
+flask
+flask_cors
+gunicorn
+
+# getting data
+tweepy # twitter
+snscrape # twitter (but better lol)

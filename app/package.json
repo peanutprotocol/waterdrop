@@ -1,0 +1,25 @@
+{
+  "name": "waterdrop",
+  "version": "1.0.0",
+  "description": "Waterdrop is a celebration of the good actors in the blockchain space.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-css": "npx tailwindcss -i ./src/css/main.css -o ./dist/css/main.css --watch",
+    "build": "rm -r dist && mkdir dist && cp -r src/* dist && npx tailwindcss -i ./src/css/main.css -o ./dist/css/main.css",
+    "run": "npm run build && python app.py" 
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ProphetFund/waterdrop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ProphetFund/waterdrop/issues"
+  },
+  "homepage": "https://github.com/ProphetFund/waterdrop#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.1.6"
+  }
+}

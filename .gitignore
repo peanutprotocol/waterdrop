@@ -1,3 +1,15 @@
+# custom stuff
+secrets.json
+.vscode
+
+# node stuff
+npmrc
+npm-debug.log
+.npmrc
+node_modules
+
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
