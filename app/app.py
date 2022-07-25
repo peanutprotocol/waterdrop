@@ -7,8 +7,18 @@ from flask import (
     Response,
     make_response,
 )
+import pandas as pd
 
-app = Flask(__name__, static_folder="dist", template_folder="dist")
+addresses = pd.read_csv("data/addresses.csv")
+
+DEBUG = True
+if DEBUG:
+    static_folder = "src"
+    template_folder = "src"
+else:
+    static_folder = "dist"
+    template_folder = "dist"
+app = Flask(__name__, static_folder=static_folder, template_folder=template_folder)
 leaderboard = []
 
 # before request redirect to https
@@ -27,13 +37,16 @@ def ping_pong():
 # home
 @app.route("/", methods=["GET"])
 def home():
-    return render_template("home.html")
+    return render_template("home.html", addresses=addresses.to_dict(orient="records"))
 
 # get all addresses
-@app.route("/leaderboard", methods=["GET"])
+@app.route("/data", methods=["GET"])
 def get_data():
-    return jsonify(leaderboard)
+    return jsonify(addresses.to_dict(orient="records"))
+    
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # change app static folder to "src"
+
+    app.run(debug=DEBUG)
     # app.run(host="

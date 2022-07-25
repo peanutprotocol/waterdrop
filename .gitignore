@@ -1,6 +1,11 @@
 # custom stuff
 secrets.json
 .vscode
+*.csv
+!addresses.csv
+*/out
+*.png
+
 
 # node stuff
 npmrc
