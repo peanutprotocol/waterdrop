@@ -10,4 +10,6 @@ Waterdrop is a celebration of the good actors in the blockchain space.
 4. change directory to app ```cd app```
 4. install npm dependencies ```npm install```
 4. run app: ```python app.py``` or ```npm run run``` or ```gunicorn app:app``` (all work lol)
-5. navigate to http://127.0.0.1:5000/ 
+5. navigate to http://127.0.0.1:5000/
+
+Comment: ```npm run build-css``` and in new terminal ```python app.py```

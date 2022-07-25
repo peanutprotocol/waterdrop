@@ -40,6 +40,11 @@ def home():
     return render_template("home.html", addresses=addresses.to_dict(orient="records"))
 
 
+@app.route('/konrad', methods=['GET'])
+def konrad():
+    return 'Hello world!'
+
+
 # get all addresses
 @app.route("/data", methods=["GET"])
 def get_data():

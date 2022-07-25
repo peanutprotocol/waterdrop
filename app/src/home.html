@@ -50,7 +50,7 @@
 
   <!-- ====== title ====== -->
   <!-- with gradient -->
-  <h1 class="text-center text-white text-4xl font-black mt-14">
+  <h1 class="text-center text-white text-4xl font-black mt-11">
     💧 Waterdrop 💧
   </h1>
   <h2 class="text-center text-white text-2xl font-bold mt-2">
@@ -62,7 +62,7 @@
     <a onclick="login()" id="login-button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
       Connect
     </a>
-  </div>
+  </div>addresses
 
     <!-- <a onclick="login()" id="login-button"
       class="border-body-color-2 text-body-color-2 hover:border-primary hover:bg-primary dark:hover:text-primary flex items-center justify-center rounded-full border py-[9px] px-8 text-base font-semibold transition-all hover:text-white dark:border-white dark:text-white dark:hover:bg-white lg:px-4 xl:px-8">
@@ -82,16 +82,16 @@
           {% for address in addresses %}
           <li class="py-4">
             <div class="flex items-center space-x-4">
-              <div class="flex-shrink-0" id="{{ address['Unnamed: 0'] }}">
-                <canvas width="42" height="42" data-jdenticon-value="{{ address['Unnamed: 0'] }}"></canvas>
+              <div class="flex-shrink-0" id="{{ address['address'] }}">
+                <canvas width="42" height="42" data-jdenticon-value="{{ address['address'] }}"></canvas>
 
               </div>
               <div class="flex-1 min-w-0">
-                <p class="text-sm font-medium text-gray-900 truncate">{{ address['Unnamed: 0'] }}</p>
+                <p class="text-sm font-medium text-gray-900 truncate">{{ address['address'] }}</p>
                 <p class="text-sm text-gray-500 truncate">{{ address['value'] }}Ξ</p>
               </div>
               <div>
-                <a href="https://etherscan.io/address/{{ address['Unnamed: 0'] }}" target="_blank"
+                <a href="https://etherscan.io/address/{{ address['address'] }}" target="_blank"
                   class="inline-flex items-center shadow-sm px-2.5 py-0.5 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-gray-200">
                   View </a>
               </div>
