@@ -3,10 +3,7 @@
 @tailwind utilities;
 
 
-body {
-  background-color: #3498db;
-}
-
+/* 
 .drop-container {
   background-color: #3498db;
   overflow: hidden;
@@ -129,4 +126,4 @@ height: 100%;
   to {
     top: 190px;
   }
-}
+} */
