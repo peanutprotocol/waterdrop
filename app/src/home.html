@@ -27,32 +27,55 @@
   <!-- ===== CSS Files ===== -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
   <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
-  
-  
+
+  <!-- ===== JS ===== -->
   <script src="https://cdn.jsdelivr.net/npm/jdenticon@3.1.1/dist/jdenticon.min.js"
-        integrity="sha384-l0/0sn63N3mskDgRYJZA6Mogihu0VY3CusdLMiwpJ9LFPklOARUcOiWEIGGmFELx"
-        crossorigin="anonymous">
-</script>
-  <script src='https://luciorubeens.github.io/pictogrify/dist/pictogrify.js'></script>
-  </head>
+    integrity="sha384-l0/0sn63N3mskDgRYJZA6Mogihu0VY3CusdLMiwpJ9LFPklOARUcOiWEIGGmFELx" crossorigin="anonymous">
+    </script>
+  <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G7L86C0KLT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-G7L86C0KLT');
+  </script>
+</head>
+
 
 <body class="max-w-screen-xl mx-auto bg-[#3498db] bg-gradient-to-r from-cyan-500 to-blue-500">
 
   <!-- ====== title ====== -->
   <!-- with gradient -->
   <h1 class="text-center text-white text-4xl font-black mt-14">
-    Waterdrop 💧
+    💧 Waterdrop 💧
   </h1>
   <h2 class="text-center text-white text-2xl font-bold mt-2">
-    A celebration of the good people in blockchain 
+    A celebration of the good people in blockchain
   </h2>
+
+  <!-- connect button -->
+  <div class="flex justify-center mt-8">
+    <a onclick="login()" id="login-button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+      Connect
+    </a>
+  </div>
+
+    <!-- <a onclick="login()" id="login-button"
+      class="border-body-color-2 text-body-color-2 hover:border-primary hover:bg-primary dark:hover:text-primary flex items-center justify-center rounded-full border py-[9px] px-8 text-base font-semibold transition-all hover:text-white dark:border-white dark:text-white dark:hover:bg-white lg:px-4 xl:px-8">
+      Connect
+    </a>
+  </div> -->
 
 
   <!-- list -->
   <span class="text-center text-2xl font-bold text-white">
     <!-- ===== list start ===== -->
-    <div class="max-w-lg mx-auto border-2 border-white-200 bg-white text-blue rounded-lg shadow-lg p-4 mt-20">
-     
+    <div class="max-w-xl mx-auto border-2 border-white-200 bg-white text-blue rounded-lg shadow-lg p-4 mt-20">
+
       <div class="flow-root mt-6">
         <ul role="list" class="-my-5 divide-y divide-gray-200">
 
@@ -95,7 +118,11 @@
   </div>
 
   <!-- ===== JS Files ====== -->
-  <script src="{{ url_for('static', filename='test.js') }}" type="application/javascript"></script>
+  <script src="{{ url_for('static', filename='js/crypto.js') }}" type="application/javascript"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/jdenticon@3.1.1/dist/jdenticon.min.js"
+    integrity="sha384-l0/0sn63N3mskDgRYJZA6Mogihu0VY3CusdLMiwpJ9LFPklOARUcOiWEIGGmFELx" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>

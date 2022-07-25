@@ -39,11 +39,12 @@ def ping_pong():
 def home():
     return render_template("home.html", addresses=addresses.to_dict(orient="records"))
 
+
 # get all addresses
 @app.route("/data", methods=["GET"])
 def get_data():
     return jsonify(addresses.to_dict(orient="records"))
-    
+
 
 if __name__ == "__main__":
     # change app static folder to "src"
