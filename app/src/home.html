@@ -34,6 +34,8 @@
     </script>
   <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
 
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-G7L86C0KLT"></script>
   <script>
@@ -50,41 +52,41 @@
 
   <!-- ====== title ====== -->
   <!-- with gradient -->
-  <h1 class="text-center text-white text-4xl font-black mt-11">
-    💧 Waterdrop 💧
-  </h1>
-  <h2 class="text-center text-white text-2xl font-bold mt-2">
-    A celebration of the good people in blockchain
-  </h2>
-
-  <!-- connect button -->
-  <div class="flex justify-center mt-8">
-    <a onclick="login()" id="login-button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-      Connect
-    </a>
-  </div>addresses
-
-    <!-- <a onclick="login()" id="login-button"
-      class="border-body-color-2 text-body-color-2 hover:border-primary hover:bg-primary dark:hover:text-primary flex items-center justify-center rounded-full border py-[9px] px-8 text-base font-semibold transition-all hover:text-white dark:border-white dark:text-white dark:hover:bg-white lg:px-4 xl:px-8">
-      Connect
-    </a>
-  </div> -->
-
+  <section class="">
+    <h1 class="text-center text-white text-4xl font-black mt-11" data-wow-delay="0.5s" data-wow-duration="1.5s">
+      💧 Waterdrop 💧
+    </h1>
+    <h2 class="text-center text-white text-2xl font-bold mt-2" data-wow-delay="0.5s" data-wow-duration="1.5s">
+      A celebration of the good people in blockchain
+    </h2>
+    <!-- connect button -->
+    <div class="flex justify-center mt-8" data-wow-delay="0.2s" data-wow-duration="1.5s">
+      <a onclick="login()" id="login-button"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+        Connect
+      </a>
+    </div>
+  </section>
 
   <!-- list -->
-  <span class="text-center text-2xl font-bold text-white">
+  <section class="text-center text-2xl font-bold text-white mt-16">
     <!-- ===== list start ===== -->
-    <div class="max-w-xl mx-auto border-2 border-white-200 bg-white text-blue rounded-lg shadow-lg p-4 mt-20">
-
+    <div class="max-w-xl mx-auto mt-8">
       <div class="flow-root mt-6">
         <ul role="list" class="-my-5 divide-y divide-gray-200">
 
           {% for address in addresses %}
-          <li class="py-4">
+          <!-- alternate left and right entrance-->
+          {% if loop.index % 2 == 0 %}
+          <li class="py-4 px-3 border-gray-200 bg-white rounded-lg shadow-lg mt-2 border-b-2 wow bounceInRight"
+            data-wow-delay="0s" data-wow-duration="1.5s">
+            {% else %}
+          <li class="py-4 px-3 border-gray-200 bg-white rounded-lg shadow-lg mt-2 border-b-2 wow bounceInLeft"
+            data-wow-delay="0s" data-wow-duration="1.5s">
+            {% endif %}
             <div class="flex items-center space-x-4">
-              <div class="flex-shrink-0" id="{{ address['address'] }}">
+              <div class="flex-shrink-0">
                 <canvas width="42" height="42" data-jdenticon-value="{{ address['address'] }}"></canvas>
-
               </div>
               <div class="flex-1 min-w-0">
                 <p class="text-sm font-medium text-gray-900 truncate">{{ address['address'] }}</p>
@@ -101,7 +103,7 @@
 
         </ul>
       </div>
-      <div class="mt-6">
+      <div class="mt-10 mb-12 wow bounceInRight">
         <a href="#"
           class="w-full flex justify-center items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
           View all </a>
@@ -109,7 +111,7 @@
     </div>
 
     <!-- ===== list end ===== -->
-  </span>
+  </section>
 
   <!-- background animation -->
   <div class="drop-container absolute left-0 top-0 -z-10 w-100 h-100 ">
@@ -123,6 +125,13 @@
   <script src="https://cdn.jsdelivr.net/npm/jdenticon@3.1.1/dist/jdenticon.min.js"
     integrity="sha384-l0/0sn63N3mskDgRYJZA6Mogihu0VY3CusdLMiwpJ9LFPklOARUcOiWEIGGmFELx" crossorigin="anonymous">
     </script>
+
+  <script src="{{ url_for('static', filename='js/wow.min.js') }}"></script>
+  <script>
+    new WOW().init();
+    console.log('such wow');
+  </script>
+
 </body>
 
 </html>

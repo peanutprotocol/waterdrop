@@ -9,7 +9,7 @@ from flask import (
 )
 import pandas as pd
 
-addresses = pd.read_csv("data/addresses.csv")
+addresses = pd.read_csv("data/addresses.csv")[:100]
 
 DEBUG = True
 if DEBUG:
@@ -40,9 +40,9 @@ def home():
     return render_template("home.html", addresses=addresses.to_dict(orient="records"))
 
 
-@app.route('/konrad', methods=['GET'])
-def konrad():
-    return 'Hello world!'
+@app.route('/test', methods=['GET'])
+def test():
+    return  render_template("test.html")
 
 
 # get all addresses
