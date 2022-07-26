@@ -42,7 +42,7 @@ def home():
 
 @app.route('/konrad', methods=['GET'])
 def konrad():
-    return 'Hello world!'
+    return 'Why are you here? Are you missing me? Typing my name into the URL void, hoping I will appear? Honestly, just tag me on discord and I\'ll be here for you.'
 
 
 # get all addresses

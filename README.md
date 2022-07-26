@@ -5,7 +5,9 @@ Waterdrop is a celebration of the good actors in the blockchain space.
 ## Running it
 0. (install python & node.js locally)
 1. git clone ```https://github.com/ProphetFund/waterdrop.git```
-2. create virtual environment: ```python -m venv venv```
+2. create virtual environment: ```python -m venv venv``` 
+Comment: isn't this ```python -m venv .venv```? 
+
 3. activate python environment &  install all dependencies: ```source venv/bin/activate && pip install -r requirements.txt```
 4. change directory to app ```cd app```
 4. install npm dependencies ```npm install```
