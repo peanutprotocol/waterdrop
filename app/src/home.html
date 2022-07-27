@@ -59,8 +59,7 @@
   </style>
 </head>
 
-<body class="leading-normal tracking-normal text-indigo-400 bg-cover bg-blend-darken bg-fixed"
-  style="background-image: url('src/jellyfish_opt.jpg');">
+<body class="bg-cover bg-fixed w-full" style="background-image: url('src/jellyfish_opt.jpg');">
 
   <!-- stupid ass wave thing, honestly ... spent 2h making the animation overflow the top div border. stupid workaround with pt-64 class -->
   <div class="drop-container absolute right-0 -z-10 pt-64">
@@ -83,7 +82,7 @@
         <!-- gigachad title -->
         <div class="mt-10 flex items-center justify-center">
           <div><a
-              class="sm:text-9xl text-9xl text-blue-400 font-bold ransform -rotate-0 transition hover:scale-105 duration-700 ease-in-out hover:rotate-2"
+              class="sm:text-9xl text-9xl text-blue-400 font-bold transform -rotate-0 transition hover:scale-105 duration-700 ease-in-out hover:rotate-2"
               href="#">
               Water</div></br>
           <div><span
@@ -100,7 +99,7 @@
     <div class="container mx-auto flex flex-wrap flex-col md:flex-row items-center">
 
       <!-- 2 col container  -->
-      <div class="w-full md:w-1/2 p-20 mt-10 wow bounceInLeft">
+      <div class="md:w-1/2 p-20 mt-10 wow bounceInLeft">
         <h1 class="my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight">
           A thank you to
           <span class="bg-clip-text text-transparent bg-gradient-to-r from-white via-pink-500 to-purple-500">
@@ -113,23 +112,23 @@
         </p>
       </div>
 
-      <div class="w-full md:w-1/2 ">
-        <div class="bg-gray-900 bg-opacity-75 px-8 pt-6 pb-8 mb-4 mx-auto rounded-2xl border-2 border-gray-500 wow bounceInRight">
+      <div class="md:w-1/2">
+        <div class="bg-gray-900 bg-opacity-75 px-4 pt-6 pb-6 mb-2 mx-auto rounded-2xl border-2 border-gray-500 wow bounceInRight">
           <div class="mb-4 mx-auto text-center">  
-            <p class="p-10 mb-8 text-white">
+            <p class="p-6 mb-8 text-white">
               Devs need test eth to play around with. After using test eth, it's nice to give it back as it makes the faucet managers happy.
               We drop NFT art to people who give back test eth to testnet faucets.
               </p>
             <a href="https://faucetlink.to/" target="_blank" class="mx-5">
               <button
-                class="mx-auto bg-gradient-to-r from-purple-900 to-pink-800 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
+                class="mx-auto bg-gradient-to-r from-purple-900 to-pink-800 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-2"
                 type="button">
                 Donate
               </button>
             </a>
             <a href="/gallery" target="_blank" class="mx-5">
               <button
-                class="mx-auto opacity-100 bg-opacity-100 bg-gradient-to-r from-pink-900 to-purple-800 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
+                class="mx-auto opacity-100 bg-opacity-100 bg-gradient-to-r from-pink-900 to-purple-800 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-2"
                 type="button">
                 Gallery
               </button>
@@ -145,23 +144,23 @@
 
 
   <!-- wallet list -->
-  <section class="w-1/2 mx-auto px-8 pt-6 pb-8 mb-4 rounded-2xl">
+  <div class="mx-auto pb-8 mb-4 rounded-2xl">
 
 
     <!-- ===== list start ===== -->
-    <div class="max-w-xl mx-auto rounded-lg shadow-lg p-4 text-center text-2xl font-bold text-white min-w-full">
+    <div class="max-w-xl mx-auto rounded-lg shadow-lg p-4 text-center text-2xl font-bold text-white min-w-min">
 
       <div class="flow-root">
         <ul role="list" class="-my-5 ">
 
-          <!-- currently displaying 0th to 20th  -->
-          {% for address in addresses[0:20] %}
+          <!-- currently displaying 0th to 50th  -->
+          {% for address in addresses[0:50] %}
           <li class="my-3 ">
 
             <!-- left/right bouncein logic -->
             {% if loop.index % 2 == 0 %}
             <div
-              class="flex items-center space-x-4 py-3 px-3 rounded-xl bg-gray-900 opacity-75 border-2 border-gray-500 wow bounceInRight"
+              class="flex items-center space-x-4 py-3 px-3 rounded-xl bg-gray-900 opacity-75 border-2 border-gray-500 wow bounceInRight bg-opacity-75 pt-6 pb-6 mb-2 mx-auto"
               data-wow-delay="0s" data-wow-duration="1.5s">
               {% else %}
               <div
@@ -176,15 +175,15 @@
                   <canvas width="42" height="42" data-jdenticon-value="{{ address['address'] }}"></canvas>
                   <!-- end medals and identicon logic -->
                 </div>
-                <div class="flex-1">
+                <div class="flex-1 break-all">
 
-                  <p class="text-sm font-medium text-white truncate">
+                  <p class="text-sm font-medium text-white">
                     {% if loop.index == 1 %}🥇
                     {% elif loop.index == 2 %}🥈
                     {% elif loop.index == 3 %}🥉
                     {% endif %}
                     {{ address['address'] }}</p>
-                  <p class="text-sm text-gray-500 truncate">{{ address['value'] }}Ξ</p>
+                  <p class="text-sm text-gray-500">{{ address['value'] }}Ξ</p>
                 </div>
 
                 <!-- view button-->
@@ -204,15 +203,7 @@
         </ul>
       </div>
 
-      <!-- view more button but can't figure out logic with jinja
-      <div class="mt-6">
-        <a href="#"
-          class="w-full flex justify-center items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
-          View all </a>
-      </div>    -->
-
-      <!-- ===== list end ===== -->
-  </section>
+    </div>
 
   </div>
 
