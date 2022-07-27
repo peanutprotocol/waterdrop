@@ -9,7 +9,7 @@ from flask import (
 )
 import pandas as pd
 
-addresses = pd.read_csv("data/addresses.csv")[:100]
+addresses = pd.read_csv("data/addresses.csv")
 
 DEBUG = True
 if DEBUG:
@@ -37,19 +37,15 @@ def ping_pong():
 # home
 @app.route("/", methods=["GET"])
 def home():
-    return render_template("home.html", addresses=addresses.to_dict(orient="records"))
+    return render_template("home.html", addresses=addresses[:20].to_dict(orient="records"))
 
 
-<<<<<<< HEAD
 @app.route('/konrad', methods=['GET'])
 def konrad():
     return 'Why are you here? Are you missing me? Typing my name into the URL void, hoping I will appear? Honestly, just tag me on discord and I\'ll be here for you.'
-=======
 @app.route('/test', methods=['GET'])
 def test():
     return  render_template("test.html")
->>>>>>> f55a1c6a47d8c9432667d956bd607c1d57533242
-
 
 # get all addresses
 @app.route("/data", methods=["GET"])
