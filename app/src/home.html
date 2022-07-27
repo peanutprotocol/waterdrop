@@ -33,19 +33,20 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
   <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-G7L86C0KLT"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-G7L86C0KLT');
   </script>
   <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
 
   <!-- REPLACE THIS -->
   <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
+  
   <!--Replace with tailwind.css once created-->
   <link href="https://unpkg.com/@tailwindcss/custom-forms/dist/custom-forms.min.css" rel="stylesheet" />
 
@@ -68,12 +69,6 @@
 
   <div class="h-full">
 
-    <!-- connect button ...
-  <div class="flex mt-8 justify-end">
-    <a onclick="login()" id="login-button" class="bg-gradient-to-r from-blue-400 to-pink-300 hover:from-purple-700 hover:to-pink-300 text-white font-bold py-2 px-4 rounded-full transform transition hover:scale-105 duration-300 ease-in-out">
-      Connect
-    </a>
-  </div> -->
 
     <!-- hero container -->
     <div class="container mx-auto justify-center">
@@ -104,8 +99,6 @@
     <!--Main-->
     <div class="container mx-auto flex flex-wrap flex-col md:flex-row items-center">
 
-      <!-- subtitle and newsletter box -->
-
       <!-- 2 col container  -->
       <div class="w-full md:w-1/2 p-20 mt-10">
         <h1 class="my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight">
@@ -121,7 +114,7 @@
       </div>
 
       <div class="w-full md:w-1/2 ">
-        <form class="bg-gray-900 bg-opacity-75 px-8 pt-6 pb-8 mb-4 mx-auto rounded-2xl">
+        <div class="bg-gray-900 bg-opacity-75 px-8 pt-6 pb-8 mb-4 mx-auto rounded-2xl">
           <div class="mb-4 mx-auto text-center">
             <p class="p-10 mb-8 text-white">This is the place to write one or two sentences about what faucets are and
               why donating back your test eth makes everyone's life easier.</p>
@@ -140,7 +133,7 @@
               </button>
             </a>
           </div>
-        </form>
+        </div>
       </div>
     </div>
 

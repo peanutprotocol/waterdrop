@@ -1,11 +1,3 @@
-<!-- to do's
-- create tailwind css
-- make newsletter form work
-- figure out how to make longer lists work
-- CTA to be decided (e.g. donate to faucets)
-- fix responsiveness on gigachad title
--->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link rel="icon"
-  href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💧</text></svg>">
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💧</text></svg>">
 
 
   <meta name="description" content="A celebration of the good people in blockchain">
@@ -44,6 +36,8 @@
   </script>
   <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
 
+
+
   <!-- REPLACE THIS -->
   <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
   <!--Replace with tailwind.css once created-->
@@ -56,21 +50,25 @@
       font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     }
   </style>
+
 </head>
 
-<body>
-  <!-- ==== Image gallery ==== -->
-  <section class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4 m-4">
-      {% for image in images %}
-    <div class="col-span-1">
+<body class="bg-cover bg-gradient-to-r from-purple-900 to-blue-900">
 
-      <div class="flex flex-col justify-center items-center">
-        <img src="/i/{{ image }}" alt="gallery" class="w-full h-auto" />
-      </div>
+
+  <!-- ==== Image gallery ==== -->
+  <section class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-6 gap-4 m-4">
+    {% for image in images %}
+    <div class="flex flex-col justify-center items-center">
+      <img src="/i/{{ image }}" alt="gallery" class="w-full h-auto bg-gray-900 bg-opacity-75 mx-auto rounded-2xl transform transition hover:scale-105 duration-300 ease-in-out" />
     </div>
-  {% endfor %}
+
+    {% endfor %}
   </section>
   <!-- ==== End of image gallery ==== -->
+
+
+
 </body>
 
 <!-- ===== JS IDENTICONS ===== -->
@@ -123,5 +121,6 @@
   console.log(art);
 </script>
 <!-- dev surprise end -->
+
 
 </html>
