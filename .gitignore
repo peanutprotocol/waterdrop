@@ -5,6 +5,7 @@ secrets.json
 !addresses.csv
 */out
 *.png
+!/app/data/images/*
 
 
 # node stuff
