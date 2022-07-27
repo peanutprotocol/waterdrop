@@ -14,7 +14,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link rel="icon"
-  href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💧</text></svg>">
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💧</text></svg>">
 
 
   <meta name="description" content="A celebration of the good people in blockchain">
@@ -68,7 +68,7 @@
 
   <div class="h-full">
 
-  <!-- connect button ...
+    <!-- connect button ...
   <div class="flex mt-8 justify-end">
     <a onclick="login()" id="login-button" class="bg-gradient-to-r from-blue-400 to-pink-300 hover:from-purple-700 hover:to-pink-300 text-white font-bold py-2 px-4 rounded-full transform transition hover:scale-105 duration-300 ease-in-out">
       Connect
@@ -121,18 +121,25 @@
       </div>
 
       <div class="w-full md:w-1/2 ">
-        <form class="bg-gray-900 opacity-75 px-8 pt-6 pb-8 mb-4 mx-auto rounded-2xl">
+        <form class="bg-gray-900 bg-opacity-75 px-8 pt-6 pb-8 mb-4 mx-auto rounded-2xl">
           <div class="mb-4 mx-auto text-center">
-            <p class="p-10 mb-8 text-white">This is the place to write one or two sentences about what faucets are and why donating back your test eth makes everyone's life easier.</p>
-            <a href="https://faucetlink.to/" target="_blank">
-            <button
-              class="mx-auto bg-gradient-to-r from-purple-900 to-pink-800 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
-              type="button">
-              Donate
-            </button>
+            <p class="p-10 mb-8 text-white">This is the place to write one or two sentences about what faucets are and
+              why donating back your test eth makes everyone's life easier.</p>
+            <a href="https://faucetlink.to/" target="_blank" class="mx-5">
+              <button
+                class="mx-auto bg-gradient-to-r from-purple-900 to-pink-800 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
+                type="button">
+                Donate
+              </button>
+            </a>
+            <a href="/gallery" target="_blank" class="mx-5">
+              <button
+                class="mx-auto opacity-100 bg-opacity-100 bg-gradient-to-r from-pink-900 to-purple-800 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
+                type="button">
+                Gallery
+              </button>
             </a>
           </div>
-
         </form>
       </div>
     </div>
@@ -158,9 +165,13 @@
 
             <!-- left/right bouncein logic -->
             {% if loop.index % 2 == 0 %}
-            <div class="flex items-center space-x-4 py-3 px-3 rounded-xl bg-gray-900 opacity-75 border-2 border-gray-500 wow bounceInRight" data-wow-delay="0s" data-wow-duration="1.5s">
+            <div
+              class="flex items-center space-x-4 py-3 px-3 rounded-xl bg-gray-900 opacity-75 border-2 border-gray-500 wow bounceInRight"
+              data-wow-delay="0s" data-wow-duration="1.5s">
               {% else %}
-              <div class="flex items-center space-x-4 py-4 px-3 rounded-xl bg-gray-900 opacity-75 border-2 border-gray-500 wow bounceInLeft" data-wow-delay="0s" data-wow-duration="1.5s">
+              <div
+                class="flex items-center space-x-4 py-4 px-3 rounded-xl bg-gray-900 opacity-75 border-2 border-gray-500 wow bounceInLeft"
+                data-wow-delay="0s" data-wow-duration="1.5s">
                 {% endif %}
 
 
@@ -171,13 +182,13 @@
                   <!-- end medals and identicon logic -->
                 </div>
                 <div class="flex-1">
-                  
+
                   <p class="text-sm font-medium text-white truncate">
                     {% if loop.index == 1 %}🥇
-                  {% elif loop.index == 2 %}🥈
-                  {% elif loop.index == 3 %}🥉
-                  {% endif %}
-                  {{ address['address'] }}</p>
+                    {% elif loop.index == 2 %}🥈
+                    {% elif loop.index == 3 %}🥉
+                    {% endif %}
+                    {{ address['address'] }}</p>
                   <p class="text-sm text-gray-500 truncate">{{ address['value'] }}Ξ</p>
                 </div>
 
@@ -206,16 +217,16 @@
       </div>    -->
 
       <!-- ===== list end ===== -->
-      </section>
+  </section>
 
-    </div>
+  </div>
 
-    <!-- Made by Footer -->
-    <div class="w-full pt-16 pb-6 text-sm text-center fade-in">
-      <a class="text-white" href="#">
-        Wow, you like scrolling. Made with 💙 by
-        <a class="text-white" href="https://www.prophet.money"> the Prophet team</a>
-    </div>
+  <!-- Made by Footer -->
+  <div class="w-full pt-16 pb-6 text-sm text-center fade-in">
+    <a class="text-white" href="#">
+      Wow, you like scrolling. Made with 💙 by
+      <a class="text-white" href="https://www.prophet.money"> the Prophet team</a>
+  </div>
   </section>
 
 </body>
