@@ -13,6 +13,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="icon"
+  href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💧</text></svg>">
+
 
   <meta name="description" content="A celebration of the good people in blockchain">
   <meta property="description" content="A celebration of the good people in blockchain">
@@ -28,11 +31,6 @@
 
   <!-- ===== CSS Files ===== -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
-  <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
-
-
-
-
   <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -44,7 +42,7 @@
 
     gtag('config', 'G-G7L86C0KLT');
   </script>
-
+  <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
 
   <!-- REPLACE THIS -->
   <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
@@ -100,8 +98,6 @@
         </div>
 
         <!-- put wave thing here if you want it to be relative to gigachad title -->
-
-
       </div>
     </div>
 
@@ -147,41 +143,41 @@
 
 
   <!-- wallet list -->
-  <div class="w-1/2 mx-auto bg-gray-900 opacity-75 px-8 pt-6 pb-8 mb-4 rounded-2xl">
+  <section class="w-1/2 mx-auto px-8 pt-6 pb-8 mb-4 rounded-2xl">
 
 
     <!-- ===== list start ===== -->
     <div class="max-w-xl mx-auto rounded-lg shadow-lg p-4 text-center text-2xl font-bold text-white min-w-full">
 
       <div class="flow-root">
-        <ul role="list" class="-my-5 divide-y divide-gray-200">
+        <ul role="list" class="-my-5 ">
 
-          <!-- currently displaying 0th to 10th  -->
-          {% for address in addresses[0:50] %}
-          <li class="py-4">
+          <!-- currently displaying 0th to 20th  -->
+          {% for address in addresses[0:20] %}
+          <li class="my-3 ">
 
             <!-- left/right bouncein logic -->
             {% if loop.index % 2 == 0 %}
-            <div class="flex items-center space-x-4 wow bounceInRight" data-wow-delay="0s" data-wow-duration="1.5s">
+            <div class="flex items-center space-x-4 py-3 px-3 rounded-xl bg-gray-900 opacity-75 border-2 border-gray-500 wow bounceInRight" data-wow-delay="0s" data-wow-duration="1.5s">
               {% else %}
-              <div class="flex items-center space-x-4 wow bounceInLeft" data-wow-delay="0s" data-wow-duration="1.5s">
+              <div class="flex items-center space-x-4 py-4 px-3 rounded-xl bg-gray-900 opacity-75 border-2 border-gray-500 wow bounceInLeft" data-wow-delay="0s" data-wow-duration="1.5s">
                 {% endif %}
 
 
                 <div class="flex-shrink-0" id="{{ address['address'] }}">
 
                   <!-- medals and identicon logic -->
-                  {% if loop.index == 1 %}<p>🥇</p>
-                  {% elif loop.index == 2 %}<p>🥈</p>
-                  {% elif loop.index == 3 %}<p>🥉</p>
-                  {% else %}
                   <canvas width="42" height="42" data-jdenticon-value="{{ address['address'] }}"></canvas>
-                  {% endif %}
                   <!-- end medals and identicon logic -->
                 </div>
                 <div class="flex-1">
+                  
                   <p class="text-sm font-medium text-white truncate">
-                    {{ address['address'] }}</p>
+                    {% if loop.index == 1 %}🥇
+                  {% elif loop.index == 2 %}🥈
+                  {% elif loop.index == 3 %}🥉
+                  {% endif %}
+                  {{ address['address'] }}</p>
                   <p class="text-sm text-gray-500 truncate">{{ address['value'] }}Ξ</p>
                 </div>
 
@@ -220,6 +216,7 @@
         Wow, you like scrolling. Made with 💙 by
         <a class="text-white" href="https://www.prophet.money"> the Prophet team</a>
     </div>
+  </section>
 
 </body>
 
