@@ -26,10 +26,6 @@ flask
 flask_cors
 gunicorn
 
-# getting data
-tweepy # twitter
-snscrape # twitter (but better lol)
-
 # art stuff
 PythonTurtle
 tk # tkinter

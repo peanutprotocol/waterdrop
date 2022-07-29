@@ -53,12 +53,12 @@
 
 </head>
 
-<body class="bg-cover bg-gradient-to-r from-purple-900 to-blue-900">
+<body class="bg-cover bg-gradient-to-r from-cyan-200 to-blue-900">
 
 
 
   <!-- ==== Image gallery ==== -->
-  <section class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-6 gap-4 m-4">
+  <section class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4 m-4">
     {% for image in images %}
     <div class="flex flex-col justify-center items-center">
       <img src="/i/{{ image }}" alt="gallery" class="w-full h-auto bg-gray-900 bg-opacity-75 mx-auto rounded-2xl transform transition hover:scale-105 duration-300 ease-in-out" />

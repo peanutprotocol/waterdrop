@@ -1,4 +1,3 @@
-from audioop import add
 from flask import (
     Flask,
     jsonify,
@@ -12,7 +11,6 @@ from flask import (
 import pandas as pd
 import os
 
-from torch import addr
 
 addresses = pd.read_csv("data/addresses.csv")
 
@@ -44,18 +42,8 @@ def ping_pong():
 @app.route("/", methods=["GET"])
 def home():
     return render_template(
-        "home.html", addresses=addresses[:20].to_dict(orient="records")
+        "home.html", addresses=addresses[:40].to_dict(orient="records")
     )
-
-
-@app.route("/konrad", methods=["GET"])
-def konrad():
-    return "Why are you here? Are you missing me? Typing my name into the URL void, hoping I will appear? Honestly, just tag me on discord and I'll be here for you."
-
-
-@app.route("/test", methods=["GET"])
-def test():
-    return render_template("test.html")
 
 
 # get all addresses
