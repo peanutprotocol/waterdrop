@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> </head>
+
+<body>
+    <p>Check console!</p>
+
+    <!-- == JS == -->
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+    <script src="{{ url_for('static', filename='js/crypto.js')}}"></script>
+
+    <script>
+    </script>
+
+    <!-- Node Modules. Dumb way of importing them. Let's move to Vue. -->
+    <script src="{{ url_for('static', filename='node_modules/merkletreejs/merkletree.js')}}"></script>
+    <script src="{{ url_for('static', filename='node_modules/keccak256/keccak256.js')}}"></script>
+    <!-- <script>
+        // SWITCH TO RINKEBY
+        let web3 = window.ethereum;
+        web3
+            .request({
+                method: "wallet_switchEthereumChain",
+                params: [{ chainId: "0x4" }]
+            })
+            .catch(() => { });
+    </script> -->
+    <script>
+        // switch to correct net
+        let web3 = window.ethereum;
+        web3
+            .request({
+                method: "wallet_switchEthereumChain",
+                params: [{ chainId: "0x4" }]
+            })
+            .catch(() => { });
+
+        // WHITELIST Merkle Tree
+        var addresses = {{ addresses_list | tojson | safe}};
+        // Hash addresses to get the leaves
+        var leaves = addresses.map(addr => keccak256(addr));
+        // Create tree
+        var merkleTree = new MerkleTree(leaves, keccak256, { sortPairs: true })
+        var rootHash = merkleTree.getRoot().toString('hex')
+        console.log("rootHash: " + rootHash);
+
+        const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+
+        // only works if on mainnet
+        async function reverseResolveENS(address) {
+            var name = await provider.lookupAddress(address);
+            console.log("Resolved ENS name: " + name);
+            return name;
+        }
+
+        async function login() {
+            // Prompt user for account connections
+            await provider.send("eth_requestAccounts", []);
+            const signer = provider.getSigner();
+            console.log("Logged in with Account:", await signer.getAddress());
+            return signer;
+        }
+
+
+        // encode into a function
+        function createProof(address) {
+            let leaf = keccak256(address)
+            let hexProof = merkleTree.getHexProof(leaf)
+            return hexProof
+        }
+
+        function isWhiteListed(address) {
+            let leaf = keccak256(address)
+            let hexProof = createProof(address)
+            let isValid = merkleTree.verify(hexProof, leaf, rootHash)
+            return isValid
+        }
+
+
+
+
+
+        // mints an NFT
+        async function mintNFT() {
+            var signer = await login()
+            var address = await signer.getAddress();
+            console.log("Logged in as: " + address);
+
+            // init contract
+            var contractAddress = "0xB5CA3aA9D75e908F6139E983D1322871CC73fcf0"; // rinkeby
+            var contract = new ethers.Contract(contractAddress, waterdropABI, signer);
+
+
+            // if not whitelisted, throw error
+            if (!isWhiteListed(address)) {
+                console.log("Not whitelisted");
+                alert("You are not whitelisted. Donate test ETH to test faucets and try again in a future snapshot!");
+                return;
+            }
+
+            // create proof to submit to contract
+            let proof = createProof(address)
+            console.log("hexProof: " + proof);
+
+            // submit proof to contract
+            let tx = await contract.mint(proof, { gasLimit: 1000000 });
+            console.log("tx: " + tx);
+            console.log("tx.hash: " + tx.hash);
+            console.log("tx.blockNumber: " + tx.blockNumber);
+            console.log("tx.blockHash: " + tx.blockHash);
+            // if transaction is mined, alert user
+            if (tx.blockNumber != null) {
+                alert("NFT minted!");
+            } else {
+                alert("Transaction failed. Try again later.");
+            }
+        }
+
+        async function main() {
+            // var address = '0xDb69f86BB91809427C10D3b05344A19996C4BBA7';
+            // var name = await reverseResolveENS(address);
+            // console.log("Resolved ENS name: " + name);
+
+
+            // Create a proof for the first address and check it
+            //var testAdress = "0x78c115f1c8b7d0804fbdf3cf7995b030c512ee78";
+            //let hexProof = merkleTree.getHexProof(keccak256(testAdress))
+            //console.log("address: " + testAdress);
+            //console.log("hexProof: " + hexProof);
+            //let isValid = merkleTree.verify(hexProof, keccak256(testAdress), rootHash)
+            //console.log("isValid: " + isValid); 
+        }
+        main();
+    </script>
+</body>
+
+</html>

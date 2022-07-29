@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.7.2",
+    "files-from-path": "^0.2.6",
+    "keccak256": "^1.0.6",
+    "merkletreejs": "^0.2.32",
+    "nft.storage": "^6.4.1"
+  }
+}
