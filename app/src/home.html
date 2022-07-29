@@ -15,6 +15,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link rel="icon"
     href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💧</text></svg>">
+  <!--  title -->
+  <title>Waterdrop</title>
 
 
   <meta name="description" content="A celebration of the good people in blockchain">
@@ -125,20 +127,29 @@
           <div class="mb-4 mx-auto text-center">
             <p class="p-10 mb-8 text-white">This is the place to write one or two sentences about what faucets are and
               why donating back your test eth makes everyone's life easier.</p>
-            <a href="https://faucetlink.to/" target="_blank" class="mx-5">
-              <button
-                class="mx-auto bg-gradient-to-r from-purple-900 to-pink-800 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
-                type="button">
-                Donate
-              </button>
-            </a>
-            <a href="/gallery" target="_blank" class="mx-5">
+            <!-- three buttons -->
+            <div class="grid grid-cols-3">
+              <a href="/gallery" target="_blank" class="mx-5">
+                <button
+                  class="mx-auto opacity-100 bg-opacity-100 bg-gradient-to-r from-pink-900 to-purple-800 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
+                  type="button">
+                  Gallery
+                </button>
+              </a>
               <button
                 class="mx-auto opacity-100 bg-opacity-100 bg-gradient-to-r from-pink-900 to-purple-800 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
-                type="button">
-                Gallery
+                type="button" onclick="alert('Coming soon!')">
+                Mint
               </button>
-            </a>
+
+              <a href="https://faucetlink.to/" target="_blank" class="mx-5">
+                <button
+                  class="mx-auto bg-gradient-to-r from-purple-900 to-pink-800 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
+                  type="button">
+                  Donate
+                </button>
+              </a>
+            </div>
           </div>
         </form>
       </div>
@@ -175,7 +186,7 @@
                 {% endif %}
 
 
-                <div class="flex-shrink-0" id="{{ address['address'] }}">
+                <div class="flex-shrink-0">
 
                   <!-- medals and identicon logic -->
                   <canvas width="42" height="42" data-jdenticon-value="{{ address['address'] }}"></canvas>
@@ -188,7 +199,8 @@
                     {% elif loop.index == 2 %}🥈
                     {% elif loop.index == 3 %}🥉
                     {% endif %}
-                    {{ address['address'] }}</p>
+                    <span class="ens-replace" id="{{ address['address'] }}">{{ address['address'] }}</span>
+                  </p>
                   <p class="text-sm text-gray-500 truncate">{{ address['value'] }}Ξ</p>
                 </div>
 
@@ -205,6 +217,44 @@
           </li>
 
           {% endfor %}
+          <script>
+            const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+
+            // switch to correct net
+            let web3 = window.ethereum;
+            web3
+              .request({
+                method: "wallet_switchEthereumChain",
+                params: [{ chainId: "0x1" }]
+              })
+              .catch(() => { });
+
+            // get all .ens-replace elements and replace them with the ens name if it exists
+            var ens = document.getElementsByClassName('ens-replace');
+
+            // only works if on mainnet
+            async function reverseResolveENS(address) {
+              // if address doesnt start with 0x, return 
+              if (!address.startsWith("0x")) {
+                return;
+              }
+              var name = await provider.lookupAddress(address);
+              console.log("Resolved ENS name: " + name);
+              return name;
+            }
+
+            async function updateAddresses() {
+              for (var i = 0; i < ens.length; i++) {
+                var address = ens[i].id;
+                var name = await reverseResolveENS(address);
+                if (name) {
+                  ens[i].innerHTML = name;
+                }
+              }
+            }
+
+            updateAddresses();
+          </script>
 
         </ul>
       </div>

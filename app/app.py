@@ -1,3 +1,4 @@
+from audioop import add
 from flask import (
     Flask,
     jsonify,
@@ -11,6 +12,8 @@ from flask import (
 import pandas as pd
 import os
 
+from torch import addr
+
 addresses = pd.read_csv("data/addresses.csv")
 
 DEBUG = True  # should load this from a config file, ideally
@@ -22,6 +25,7 @@ else:
     template_folder = "dist"
 app = Flask(__name__, static_folder=static_folder, template_folder=template_folder)
 leaderboard = []
+
 
 # before request redirect to https
 @app.before_request
@@ -73,6 +77,12 @@ def gallery():
     images = [f.split(".")[0] for f in os.listdir("data/images")][: 8 * 8]
     # m
     return render_template("gallery.html", images=images)
+
+
+@app.route("/mint", methods=["GET"])
+def mint():
+    addresses_list = addresses.iloc[:, 0].tolist()
+    return render_template("mint.html", addresses_list=addresses_list)
 
 
 if __name__ == "__main__":

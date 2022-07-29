@@ -13,6 +13,8 @@ npmrc
 npm-debug.log
 .npmrc
 node_modules
+!/app/src/node_modules/*
+
 
 
 

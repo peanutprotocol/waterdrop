@@ -19,6 +19,7 @@ numpy==1.21
 
 # blockchain stuff
 eth-brownie
+web3
 
 # server stuff
 flask
