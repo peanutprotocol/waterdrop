@@ -3,6 +3,7 @@ secrets.json
 .vscode
 *.csv
 !addresses.csv
+!/playground/*.csv
 */out
 *.png
 !/app/data/images/*

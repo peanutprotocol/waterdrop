@@ -10,6 +10,7 @@ from flask import (
 )
 import pandas as pd
 import os
+import random
 
 ################################################################################
 addresses = pd.read_csv("data/addresses.csv")
@@ -67,7 +68,10 @@ def get_image(name):
 @app.route("/gallery", methods=["GET"])
 def gallery():
     # get all image names in /data/images
-    images = [f.split(".")[0] for f in os.listdir("data/images")][: 8 * 8]
+    
+    images = [f.split(".")[0] for f in os.listdir("data/images")]
+    # get 64 random images
+    images = random.sample(images, 64)
     # m
     return render_template("gallery.html", images=images, contractAddress=contractAddress)
 
