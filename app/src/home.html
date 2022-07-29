@@ -148,7 +148,8 @@
             </div>
             <!-- Simple Text Links -->
             <div class="mt-4 text-sm">
-              <a href="https://opensea.io/assets/{{ contractAddress}}" target="_blank"
+              <!-- <a href="https://opensea.io/assets/{{ contractAddress}}" target="_blank" -->
+                <a href="https://opensea.io/collection/waterdrop-v3" target="_blank"
                 class="mx-1 underline">OpenSea</a>
               <a href="https://looksrare.org/collections/{{ contractAddress}}" target="_blank"
                 class="mx-1 underline">LooksRare</a>
@@ -183,41 +184,43 @@
             <!-- left/right bouncein logic -->
             {% if loop.index % 2 == 0 %}
             <div
-              class="flex items-center space-x-4 py-3 px-3 rounded-xl bg-gray-900 opacity-75 border-2 border-gray-500 wow bounceInRight bg-opacity-75 pt-6 pb-6 mb-2 mx-auto"
+              class="flex ens-replace items-center space-x-4 py-3 px-3 rounded-xl bg-gray-900 opacity-75 border-2 border-gray-500 wow bounceInRight bg-opacity-75 pt-6 pb-6 mb-2 mx-auto"
               data-wow-delay="0s" data-wow-duration="1.5s">
               {% else %}
               <div
-                class="flex items-center space-x-4 py-4 px-3 rounded-xl bg-gray-900 opacity-75 border-2 border-gray-500 wow bounceInLeft"
+                class="flex ens-replace items-center space-x-4 py-4 px-3 rounded-xl bg-gray-900 opacity-75 border-2 border-gray-500 wow bounceInLeft bg-opacity-75 pt-6 pb-6 mb-2 mx-auto"
                 data-wow-delay="0s" data-wow-duration="1.5s">
                 {% endif %}
 
 
-                <div class="flex-shrink-0">
+                  <div class="flex-shrink-0">
 
-                  <!-- medals and identicon logic -->
-                  <canvas width="42" height="42" data-jdenticon-value="{{ address['address'] }}"></canvas>
-                  <!-- end medals and identicon logic -->
-                </div>
-                <div class="flex-1 break-all">
+                    <!-- medals and identicon logic -->
+                    <span class="ens-replace-image">
+                      <canvas width="42" height="42" data-jdenticon-value="{{ address['address'] }}"></canvas>
+                    </span>
+                    <!-- end medals and identicon logic -->
+                  </div>
+                  <div class="flex-1 break-all">
 
-                  <p class="text-sm font-medium">
-                    {% if loop.index == 1 %}🥇
-                    {% elif loop.index == 2 %}🥈
-                    {% elif loop.index == 3 %}🥉
-                    {% endif %}
-                    <span class="ens-replace" id="{{ address['address'] }}">{{ address['address'] }}</span>
-                  </p>
-                  <p class="text-sm text-gray-500 truncate">{{ address['value'] }}Ξ</p>
-                </div>
+                    <p class="text-sm font-medium">
+                      {% if loop.index == 1 %}🥇
+                      {% elif loop.index == 2 %}🥈
+                      {% elif loop.index == 3 %}🥉
+                      {% endif %}
+                      <span class="ens-replace-address" id="{{ address['address'] }}">{{ address['address'] }}</span>
+                    </p>
+                    <p class="text-sm text-gray-500 truncate">{{ address['value'] }}Ξ</p>
+                  </div>
 
-                <!-- view button-->
-                <a href="https://etherscan.io/address/{{ address['address'] }}" target="_blank">
-                  <button
-                    class="mx-auto bg-gradient-to-r from-purple-900 to-pink-800 hover:from-purple-500 hover:to-pink-500 text-sm py-2 px-4 rounded-xl transform transition hover:scale-105 duration-300 ease-in-out"
-                    type="button">
-                    <i class="fas fa-eye"></i> View
-                  </button>
-                </a>
+                  <!-- view button-->
+                  <a href="https://etherscan.io/address/{{ address['address'] }}" target="_blank">
+                    <button
+                      class="mx-auto bg-gradient-to-r from-purple-900 to-pink-800 hover:from-purple-500 hover:to-pink-500 text-sm py-2 px-4 rounded-xl transform transition hover:scale-105 duration-300 ease-in-out"
+                      type="button">
+                      <i class="fas fa-eye"></i> View
+                    </button>
+                  </a>
 
               </div>
           </li>
@@ -348,11 +351,11 @@
 
   async function main() {
 
-    // get all .ens-replace elements and replace them with the ens name if it exists
-    var ens = document.getElementsByClassName('ens-replace');
 
     // only works if on mainnet
     async function reverseResolveENS(address) {
+      console.log("reverseResolveENS: " + address);
+      console.log(typeof address);
       // if address doesnt start with 0x, return 
       if (!address.startsWith("0x")) {
         return;
@@ -362,13 +365,25 @@
       return name;
     }
 
+
+    // get all .ens-replace elements and replace them with the ens name if it exists
+    var ens = document.getElementsByClassName('ens-replace');
+
     async function updateAddresses() {
       for (var i = 0; i < ens.length; i++) {
-        var address = ens[i].id;
-        var name = await reverseResolveENS(address);
+        // get child with class 'ens-replace-address'
+        var address = ens[i].getElementsByClassName('ens-replace-address')[0];
+        var name = await reverseResolveENS(address.innerHTML);
         if (name) {
-          const avatar = await provider.getAvatar(name);
-          ens[i].innerHTML =  `<a href="https://app.ens.domains/name/"` + name + `" target="_blank">` + name + `</a>`;
+          address.innerHTML = `<a href="https://app.ens.domains/name/"` + name + `" target="_blank" class="bold">` + name + `</a>`;
+
+          //const avatar = await provider.getAvatar(name);
+          //// if avatar is not null
+          //if (avatar) {
+          //  // get child with class 'ens-replace-avatar'
+          //  var avatar_element = ens[i].getElementsByClassName('ens-replace-image')[0];
+          //image.innerHTML = `<img src="` + avatar + `" alt="` + name + `" />`;
+          //}
         }
       }
     }
@@ -415,7 +430,7 @@
 
     // init contract
     var contractAddress = "{{ contractAddress }}"; // MAINNET
-    var contract = new ethers.Contract(contractAddress, waterdropABI, signer);    
+    var contract = new ethers.Contract(contractAddress, waterdropABI, signer);
 
     // create proof to submit to contract
     let proof = createProof(address)

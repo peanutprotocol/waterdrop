@@ -91,4 +91,5 @@ def mint():
 
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=DEBUG)
+    # app.run(debug=False)
