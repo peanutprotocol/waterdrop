@@ -14,7 +14,8 @@ import random
 
 ################################################################################
 addresses = pd.read_csv("data/addresses.csv")
-contractAddress = "0xaf26f7c6bf453e2078f08953e4b28004a2c1e209"
+addresses_list = addresses.iloc[:, 0].tolist()
+contractAddress = "0x8d1a17A3A4504aEB17515645BA8098f1D75237f7"
 ################################################################################
 
 
@@ -48,6 +49,7 @@ def home():
     return render_template(
         "home.html",
         addresses=addresses[:40].to_dict(orient="records"),
+        addresses_list=addresses_list,
         contractAddress=contractAddress,
     )
 
@@ -68,18 +70,24 @@ def get_image(name):
 @app.route("/gallery", methods=["GET"])
 def gallery():
     # get all image names in /data/images
-    
+
     images = [f.split(".")[0] for f in os.listdir("data/images")]
     # get 64 random images
     images = random.sample(images, 64)
     # m
-    return render_template("gallery.html", images=images, contractAddress=contractAddress)
+    return render_template(
+        "gallery.html",
+        images=images,
+        addresses_list=addresses_list,
+        contractAddress=contractAddress,
+    )
 
 
 @app.route("/mint", methods=["GET"])
 def mint():
-    addresses_list = addresses.iloc[:, 0].tolist()
-    return render_template("mint.html", addresses_list=addresses_list, contractAddress=contractAddress)
+    return render_template(
+        "mint.html", addresses_list=addresses_list, contractAddress=contractAddress
+    )
 
 
 if __name__ == "__main__":

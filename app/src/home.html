@@ -122,7 +122,7 @@
               <span class="mx-5">
                 <button
                   class="mx-auto opacity-100 bg-opacity-100 bg-gradient-to-r from-pink-900 to-purple-800 hover:from-purple-500 hover:to-pink-500 font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
-                  type="button" onclick="alert('Coming soon!')">
+                  type="button" onclick="mintNFT()">
                   Mint 💙
                 </button>
               </span>
@@ -143,17 +143,19 @@
               </a>
             </div>
             <!-- Simple Text Links -->
-            <div class="flex flex-wrap justify-center mt-6 text-gray-300">
-              <a href="https://etherscan.io/address/{{ contractAddress}}" target="_blank" class="mx-3 underline">Etherscan</a>
-              <a href="https://opensea.io/assets/{{ contractAddress}}" target="_blank" class="mx-3 underline">OpenSea</a>
+            <div class="mt-4 text-sm">
+              <a href="https://opensea.io/assets/{{ contractAddress}}" target="_blank"
+                class="mx-1 underline">OpenSea</a>
               <a href="https://looksrare.org/collections/{{ contractAddress}}" target="_blank"
-                class="mx-3 underline">LooksRare</a>
+                class="mx-1 underline">LooksRare</a>
+              <a href="https://etherscan.io/address/{{ contractAddress}}" target="_blank"
+                class="mx-1 underline">Etherscan</a>
+              <a href="https://github.com/ProphetFund/waterdrop" target="_blank" class="mx-1 underline">Github</a>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
   </div>
 
 
@@ -217,56 +219,15 @@
           </li>
 
           {% endfor %}
-          <script>
-            const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
-
-            // switch to correct net
-            let web3 = window.ethereum;
-            web3
-              .request({
-                method: "wallet_switchEthereumChain",
-                params: [{ chainId: "0x1" }]
-              })
-              .catch(() => { });
-
-            // get all .ens-replace elements and replace them with the ens name if it exists
-            var ens = document.getElementsByClassName('ens-replace');
-
-            // only works if on mainnet
-            async function reverseResolveENS(address) {
-              // if address doesnt start with 0x, return 
-              if (!address.startsWith("0x")) {
-                return;
-              }
-              var name = await provider.lookupAddress(address);
-              console.log("Resolved ENS name: " + name);
-              return name;
-            }
-
-            async function updateAddresses() {
-              for (var i = 0; i < ens.length; i++) {
-                var address = ens[i].id;
-                var name = await reverseResolveENS(address);
-                if (name) {
-                  ens[i].innerHTML = name;
-                }
-              }
-            }
-
-            updateAddresses();
-          </script>
-
         </ul>
       </div>
-
     </div>
-
   </div>
 
   <!-- Made by Footer -->
   <footer>
     <div class="w-full pt-8 pb-6 text-sm text-center text-lg fade-in">
-      <a class= " href="/data">
+      <a class=" href=" /data">
         Wow, you like scrolling! <br>Click <span class="underline">HERE</span> get the full data as JSON</span>.
     </div>
     <div class="w-full pt-16 pb-6 text-sm text-center fade-in text-gray-400">
@@ -296,7 +257,6 @@
 <script src="https://cdn.jsdelivr.net/npm/jdenticon@3.1.1/dist/jdenticon.min.js"
   integrity="sha384-l0/0sn63N3mskDgRYJZA6Mogihu0VY3CusdLMiwpJ9LFPklOARUcOiWEIGGmFELx" crossorigin="anonymous">
   </script>
-<script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
 <!-- ===== Jdenticon end ===== -->
 
 <!-- wow animations script -->
@@ -348,5 +308,119 @@
   console.log(art);
 </script>
 <!-- dev surprise end -->
+
+<!-- crypto stuff -->
+
+<!-- == JS == -->
+<script src="{{ url_for('static', filename='js/crypto.js')}}"></script>
+<!-- Node Modules. Dumb way of importing them. Let's move to Vue. -->
+<script src="{{ url_for('static', filename='node_modules/merkletreejs/merkletree.js')}}"></script>
+<script src="{{ url_for('static', filename='node_modules/keccak256/keccak256.js')}}"></script>
+<script>
+
+  ////////////////////////////////////////////////////////////////////////////////
+  // THIS PART IS DOPE AS SHIIIIIT      🌳🌳🌳🌳🌳🌳🌳🌳                       //
+  ////////////////////////////////////////////////////////////////////////////////
+  // WHITELIST Merkle Tree
+  var addresses = {{ addresses_list | tojson | safe}};
+  // Hash addresses to get the leaves
+  var leaves = addresses.map(addr => keccak256(addr));
+  // Create tree
+  var merkleTree = new MerkleTree(leaves, keccak256, { sortPairs: true })
+  var rootHash = merkleTree.getRoot().toString('hex')
+  console.log("rootHash: " + rootHash);
+  ////////////////////////////////////////////////////////////////////////////////
+
+  const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+
+  // switch to correct net
+  let web3 = window.ethereum;
+  web3
+    .request({
+      method: "wallet_switchEthereumChain",
+      params: [{ chainId: "0x1" }]
+    })
+    .catch(() => { });
+
+  async function main() {
+
+    // get all .ens-replace elements and replace them with the ens name if it exists
+    var ens = document.getElementsByClassName('ens-replace');
+
+    // only works if on mainnet
+    async function reverseResolveENS(address) {
+      // if address doesnt start with 0x, return 
+      if (!address.startsWith("0x")) {
+        return;
+      }
+      var name = await provider.lookupAddress(address);
+      console.log("Resolved ENS name: " + name);
+      return name;
+    }
+
+    async function updateAddresses() {
+      for (var i = 0; i < ens.length; i++) {
+        var address = ens[i].id;
+        var name = await reverseResolveENS(address);
+        if (name) {
+          ens[i].innerHTML = name;
+        }
+      }
+    }
+    updateAddresses();
+  }
+  main();
+
+
+  async function login() {
+    // Prompt user for account connections
+    await provider.send("eth_requestAccounts", []);
+    const signer = provider.getSigner();
+    console.log("Logged in with Account:", await signer.getAddress());
+    return signer;
+  }
+
+
+  // encode into a function
+  function createProof(address) {
+    let leaf = keccak256(address)
+    let hexProof = merkleTree.getHexProof(leaf)
+    return hexProof
+  }
+
+  function isWhiteListed(address) {
+    let leaf = keccak256(address)
+    let hexProof = createProof(address)
+    let isValid = merkleTree.verify(hexProof, leaf, rootHash)
+    return isValid
+  }
+
+  // mints an NFT
+  async function mintNFT() {
+    var signer = await login()
+    var address = await signer.getAddress();
+    console.log("Logged in as: " + address);
+
+    // if not whitelisted, throw error
+    if (!isWhiteListed(address)) {
+      console.log("Not whitelisted");
+      alert("You are not whitelisted. Donate test ETH to test faucets and try again in a future snapshot!");
+      return;
+    }
+
+    // init contract
+    var contractAddress = "{{ contractAddress }}"; // MAINNET
+    var contract = new ethers.Contract(contractAddress, waterdropABI, signer);    
+
+    // create proof to submit to contract
+    let proof = createProof(address)
+    console.log("hexProof: " + proof);
+
+    // submit proof to contract
+    let tx = await contract.mint(proof, { gasLimit: 1000000 });
+    console.log("tx.hash: " + tx.hash);
+    alert("Transaction submitted, hash:\n\n " + tx.hash);
+  }
+</script>
 
 </html>

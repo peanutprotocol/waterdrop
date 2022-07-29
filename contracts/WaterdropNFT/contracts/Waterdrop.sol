@@ -34,7 +34,7 @@ contract Waterdrop is ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
     bytes32 public merkleRoot =
-        0x9926acba01e884df00dad087d10d9194f48d40ff64ccd6a9c721db8e65edf50d;
+        0x85c441b7c5351cecebbb77e221803559f4d32cee23896d00cf3d9b34d779aade;  // final list
     string public baseURI =
         "ipfs://bafybeih56lk6istzo42eie4kpsoengalm73axfhmprylzdaazdhxgs7vmi";
 

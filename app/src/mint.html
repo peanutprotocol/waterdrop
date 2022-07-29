@@ -9,10 +9,6 @@
     <!-- == JS == -->
     <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
     <script src="{{ url_for('static', filename='js/crypto.js')}}"></script>
-
-    <script>
-    </script>
-
     <!-- Node Modules. Dumb way of importing them. Let's move to Vue. -->
     <script src="{{ url_for('static', filename='node_modules/merkletreejs/merkletree.js')}}"></script>
     <script src="{{ url_for('static', filename='node_modules/keccak256/keccak256.js')}}"></script>
@@ -77,10 +73,6 @@
             return isValid
         }
 
-
-
-
-
         // mints an NFT
         async function mintNFT() {
             var signer = await login()
@@ -88,7 +80,7 @@
             console.log("Logged in as: " + address);
 
             // init contract
-            var contractAddress = "0xB5CA3aA9D75e908F6139E983D1322871CC73fcf0"; // rinkeby
+            var contractAddress = "{{ contractAddress }}"; // rinkeby
             var contract = new ethers.Contract(contractAddress, waterdropABI, signer);
 
 
