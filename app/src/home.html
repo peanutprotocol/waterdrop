@@ -1,9 +1,4 @@
-<!-- to do's
-- create tailwind css
-- make newsletter form work
-- figure out how to make longer lists work 
-- CTA to be decided (e.g. donate to faucets)
-- fix responsiveness on gigachad title
+<!-- stop pressing f12 you haxxxor
 -->
 
 <!DOCTYPE html>
@@ -61,7 +56,7 @@
   </style>
 </head>
 
-<body class="bg-cover bg-fixed w-full" style="background-image: url('src/jellyfish_opt.jpg');">
+<body class="bg-cover bg-fixed w-full text-white" style="background-image: url('src/jellyfish_opt.jpg');">
 
   <!-- stupid ass wave thing, honestly ... spent 2h making the animation overflow the top div border. stupid workaround with pt-64 class -->
   <div class="drop-container absolute right-0 -z-10 pt-64">
@@ -82,9 +77,9 @@
         </div>
 
         <!-- gigachad title -->
-        <div class="mt-10 flex items-center justify-center">
+        <div class="mt-10 flex items-center justify-center text-6xl sm:text-9xl">
           <div><a
-              class="sm:text-9xl text-9xl text-blue-400 font-bold transform -rotate-0 transition hover:scale-105 duration-700 ease-in-out hover:rotate-2"
+              class="text-blue-400 font-bold transform -rotate-0 transition hover:scale-105 duration-700 ease-in-out hover:rotate-2"
               href="#">
               Water</div></br>
           <div><span
@@ -102,14 +97,14 @@
 
       <!-- 2 col container  -->
       <div class="md:w-1/2 p-20 mt-10 wow bounceInLeft">
-        <h1 class="my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight">
+        <h1 class="my-4 text-3xl md:text-5xl opacity-75 font-bold leading-tight">
           A thank you to
           <span class="bg-clip-text text-transparent bg-gradient-to-r from-white via-pink-500 to-purple-500">
             the good people of the Blockchain
           </span>
 
         </h1>
-        <p class="mb-8 text-white">
+        <p class="mb-8">
           We drop NFT art to people who give back test eth to testnet faucets.
         </p>
       </div>
@@ -118,7 +113,7 @@
         <div
           class="bg-gray-900 bg-opacity-75 px-4 pt-6 pb-6 mb-2 mx-auto rounded-2xl border-2 border-gray-500 wow bounceInRight">
           <div class="mb-4 mx-auto text-center">
-            <p class="px-5 py-3 mb-4 text-white">
+            <p class="px-5 py-3 mb-4">
               Devs need test eth to play around with. After using test eth, it's nice to give it back as it makes the
               faucet managers happy.
               We drop NFT art to people who give back test eth to testnet faucets.
@@ -126,14 +121,14 @@
             <div>
               <span class="mx-5">
                 <button
-                  class="mx-auto opacity-100 bg-opacity-100 bg-gradient-to-r from-pink-900 to-purple-800 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
+                  class="mx-auto opacity-100 bg-opacity-100 bg-gradient-to-r from-pink-900 to-purple-800 hover:from-purple-500 hover:to-pink-500 font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
                   type="button" onclick="alert('Coming soon!')">
                   Mint 💙
                 </button>
               </span>
               <a href="/gallery" target="_blank" class="mx-5">
                 <button
-                  class="mx-auto opacity-100 bg-opacity-100 bg-gradient-to-r from-pink-900 to-purple-800 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-2"
+                  class="mx-auto opacity-100 bg-opacity-100 bg-gradient-to-r from-pink-900 to-purple-800 hover:from-purple-500 hover:to-pink-500 font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-2"
                   type="button">
                   Gallery
                 </button>
@@ -141,7 +136,7 @@
 
               <a href="https://faucetlink.to/" target="_blank" class="mx-5">
                 <button
-                  class="mx-auto bg-gradient-to-r from-purple-900 to-pink-800 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
+                  class="mx-auto bg-gradient-to-r from-purple-900 to-pink-800 hover:from-purple-500 hover:to-pink-500 font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
                   type="button">
                   Donate
                 </button>
@@ -170,7 +165,7 @@
 
 
     <!-- ===== list start ===== -->
-    <div class="max-w-xl mx-auto rounded-lg shadow-lg p-4 text-center text-2xl font-bold text-white min-w-min">
+    <div class="max-w-xl mx-auto rounded-lg shadow-lg p-4 text-center text-2xl font-bold min-w-min">
 
       <div class="flow-root">
         <ul role="list" class="-my-5 ">
@@ -199,7 +194,7 @@
                 </div>
                 <div class="flex-1 break-all">
 
-                  <p class="text-sm font-medium text-white">
+                  <p class="text-sm font-medium">
                     {% if loop.index == 1 %}🥇
                     {% elif loop.index == 2 %}🥈
                     {% elif loop.index == 3 %}🥉
@@ -212,7 +207,7 @@
                 <!-- view button-->
                 <a href="https://etherscan.io/address/{{ address['address'] }}" target="_blank">
                   <button
-                    class="mx-auto bg-gradient-to-r from-purple-900 to-pink-800 hover:from-purple-500 hover:to-pink-500 text-white text-sm py-2 px-4 rounded-xl transform transition hover:scale-105 duration-300 ease-in-out"
+                    class="mx-auto bg-gradient-to-r from-purple-900 to-pink-800 hover:from-purple-500 hover:to-pink-500 text-sm py-2 px-4 rounded-xl transform transition hover:scale-105 duration-300 ease-in-out"
                     type="button">
                     <i class="fas fa-eye"></i> View
                   </button>
@@ -271,7 +266,7 @@
   <!-- Made by Footer -->
   <footer>
     <div class="w-full pt-8 pb-6 text-sm text-center text-lg fade-in">
-      <a class="text-white " href="/data">
+      <a class= " href="/data">
         Wow, you like scrolling! <br>Click <span class="underline">HERE</span> get the full data as JSON</span>.
     </div>
     <div class="w-full pt-16 pb-6 text-sm text-center fade-in text-gray-400">
@@ -319,36 +314,36 @@
   ,/'\\_||_
   ( (___  \`.
   \`\\./  \`=='
-         |||
-         |||
-         |||
-         |||
-         |||
-         |||
-         |||
-         |||
-         |||
-         |||
-         |||
-         |||
-         |||
-         |||
-         |||
-         |||
-         |||
-         |||
-         |||
-         |||
-         |||
-         |||
-         |||
-         |||
-         |||
-         |||
-         |||
-         |||
-         |||
-         |||
+         |||s|||
+         |||t|||
+         |||o|||
+         |||p|||
+         ||| |||
+         |||p|||
+         |||r|||
+         |||e|||
+         |||s|||
+         |||s|||
+         |||i|||
+         |||n|||
+         |||g|||
+         ||| |||
+         |||f|||
+         |||1|||
+         |||2|||
+         ||| |||
+         |||u|||
+         ||| |||
+         |||h|||
+         |||a|||
+         |||x|||
+         |||x|||
+         |||x|||
+         |||o|||
+         |||r|||
+         ||| |||
+         ||| |||
+         ||| |||
   `;
   console.log(art);
 </script>
