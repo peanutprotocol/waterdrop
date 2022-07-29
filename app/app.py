@@ -11,8 +11,11 @@ from flask import (
 import pandas as pd
 import os
 
-
+################################################################################
 addresses = pd.read_csv("data/addresses.csv")
+contractAddress = "0xaf26f7c6bf453e2078f08953e4b28004a2c1e209"
+################################################################################
+
 
 DEBUG = True  # should load this from a config file, ideally
 if DEBUG:
@@ -42,7 +45,9 @@ def ping_pong():
 @app.route("/", methods=["GET"])
 def home():
     return render_template(
-        "home.html", addresses=addresses[:40].to_dict(orient="records")
+        "home.html",
+        addresses=addresses[:40].to_dict(orient="records"),
+        contractAddress=contractAddress,
     )
 
 
@@ -64,13 +69,13 @@ def gallery():
     # get all image names in /data/images
     images = [f.split(".")[0] for f in os.listdir("data/images")][: 8 * 8]
     # m
-    return render_template("gallery.html", images=images)
+    return render_template("gallery.html", images=images, contractAddress=contractAddress)
 
 
 @app.route("/mint", methods=["GET"])
 def mint():
     addresses_list = addresses.iloc[:, 0].tolist()
-    return render_template("mint.html", addresses_list=addresses_list)
+    return render_template("mint.html", addresses_list=addresses_list, contractAddress=contractAddress)
 
 
 if __name__ == "__main__":

@@ -118,29 +118,26 @@
         <div
           class="bg-gray-900 bg-opacity-75 px-4 pt-6 pb-6 mb-2 mx-auto rounded-2xl border-2 border-gray-500 wow bounceInRight">
           <div class="mb-4 mx-auto text-center">
-            <p class="p-6 mb-8 text-white">
+            <p class="px-5 py-3 mb-4 text-white">
               Devs need test eth to play around with. After using test eth, it's nice to give it back as it makes the
               faucet managers happy.
               We drop NFT art to people who give back test eth to testnet faucets.
             </p>
-            <a href="https://faucetlink.to/" target="_blank" class="mx-5">
-              <button
-                class="mx-auto bg-gradient-to-r from-purple-900 to-pink-800 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-2"
-                type="button">
-                Donate
-              </button>
-            </a>
-            <button
-              class="mx-auto opacity-100 bg-opacity-100 bg-gradient-to-r from-pink-900 to-purple-800 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
-              type="button" onclick="alert('Coming soon!')">
-              Mint
-            </button>
-            <a href="/gallery" target="_blank" class="mx-5">
-              <button
-                class="mx-auto opacity-100 bg-opacity-100 bg-gradient-to-r from-pink-900 to-purple-800 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-2"
-                type="button">
-                Gallery
-              </button>
+            <div>
+              <span class="mx-5">
+                <button
+                  class="mx-auto opacity-100 bg-opacity-100 bg-gradient-to-r from-pink-900 to-purple-800 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
+                  type="button" onclick="alert('Coming soon!')">
+                  Mint 💙
+                </button>
+              </span>
+              <a href="/gallery" target="_blank" class="mx-5">
+                <button
+                  class="mx-auto opacity-100 bg-opacity-100 bg-gradient-to-r from-pink-900 to-purple-800 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-2"
+                  type="button">
+                  Gallery
+                </button>
+              </a>
 
               <a href="https://faucetlink.to/" target="_blank" class="mx-5">
                 <button
@@ -149,6 +146,26 @@
                   Donate
                 </button>
               </a>
+            </div>
+            <!-- Simple Text Links -->
+            <div class="flex flex-wrap justify-center mt-6 text-gray-400">
+              <span class="italic">Links:</span><a href="https://etherscan.io/address/{{ contractAddress}}"
+                target="_blank" class="mx-5">
+                <button
+                  class="mx-auto opacity-100 bg-opacity-100 bg-gradient-to-r from-pink-900 to-purple-800 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
+                  type="button">
+                  Etherscan
+                </button>
+              </a>
+              <a href="https://faucetlink.to/" target="_blank" class="mx-5">
+                <button
+                  class="mx-auto opacity-100 bg-opacity-100 bg-gradient-to-r from-pink-900 to-purple-800 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
+                  type="button">
+                  Faucetlink
+                </button>
+              </a>
+            </div>
+            </div>
           </div>
         </div>
       </div>
@@ -157,7 +174,6 @@
 
 
 
-  </div>
 
 
   <!-- wallet list -->
@@ -266,11 +282,11 @@
   <!-- Made by Footer -->
   <footer>
     <div class="w-full pt-8 pb-6 text-sm text-center text-lg fade-in">
-       <a class="text-white " href="/data">
+      <a class="text-white " href="/data">
         Wow, you like scrolling! <br>Click <span class="underline">HERE</span> get the full data as JSON</span>.
     </div>
     <div class="w-full pt-16 pb-6 text-sm text-center fade-in text-gray-400">
-       <a class="" href="https://www.prophet.money">
+      <a class="" href="https://www.prophet.money">
         Made with 💙 by
         <a class="" href="https://www.prophet.money"> the <span class="underline">Prophet</span> team</a>
     </div>
