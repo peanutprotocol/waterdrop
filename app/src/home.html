@@ -231,7 +231,7 @@
   <!-- Made by Footer -->
   <footer>
     <div class="w-full pt-8 pb-6 text-sm text-center text-lg fade-in">
-      <a class=" href=" /data">
+      <a class="" href="/data">
         Wow, you like scrolling! <br>Click <span class="underline">HERE</span> get the full data as JSON</span>.
     </div>
     <div class="w-full pt-16 pb-6 text-sm text-center fade-in text-gray-400">
@@ -367,7 +367,8 @@
         var address = ens[i].id;
         var name = await reverseResolveENS(address);
         if (name) {
-          ens[i].innerHTML = name;
+          const avatar = await provider.getAvatar(name);
+          ens[i].innerHTML =  `<a href="https://app.ens.domains/name/"` + name + `" target="_blank">` + name + `</a>`;
         }
       }
     }
