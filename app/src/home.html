@@ -1,7 +1,7 @@
 <!-- to do's
 - create tailwind css
 - make newsletter form work
-- figure out how to make longer lists work
+- figure out how to make longer lists work 
 - CTA to be decided (e.g. donate to faucets)
 - fix responsiveness on gigachad title
 -->
@@ -35,19 +35,20 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
   <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-G7L86C0KLT"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-G7L86C0KLT');
   </script>
   <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
 
   <!-- REPLACE THIS -->
   <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
+  
   <!--Replace with tailwind.css once created-->
   <link href="https://unpkg.com/@tailwindcss/custom-forms/dist/custom-forms.min.css" rel="stylesheet" />
 
@@ -60,8 +61,7 @@
   </style>
 </head>
 
-<body class="leading-normal tracking-normal text-indigo-400 bg-cover bg-blend-darken bg-fixed"
-  style="background-image: url('src/jellyfish_opt.jpg');">
+<body class="bg-cover bg-fixed w-full" style="background-image: url('src/jellyfish_opt.jpg');">
 
   <!-- stupid ass wave thing, honestly ... spent 2h making the animation overflow the top div border. stupid workaround with pt-64 class -->
   <div class="drop-container absolute right-0 -z-10 pt-64">
@@ -70,12 +70,6 @@
 
   <div class="h-full">
 
-    <!-- connect button ...
-  <div class="flex mt-8 justify-end">
-    <a onclick="login()" id="login-button" class="bg-gradient-to-r from-blue-400 to-pink-300 hover:from-purple-700 hover:to-pink-300 text-white font-bold py-2 px-4 rounded-full transform transition hover:scale-105 duration-300 ease-in-out">
-      Connect
-    </a>
-  </div> -->
 
     <!-- hero container -->
     <div class="container mx-auto justify-center">
@@ -90,7 +84,7 @@
         <!-- gigachad title -->
         <div class="mt-10 flex items-center justify-center">
           <div><a
-              class="sm:text-9xl text-9xl text-blue-400 font-bold ransform -rotate-0 transition hover:scale-105 duration-700 ease-in-out hover:rotate-2"
+              class="sm:text-9xl text-9xl text-blue-400 font-bold transform -rotate-0 transition hover:scale-105 duration-700 ease-in-out hover:rotate-2"
               href="#">
               Water</div></br>
           <div><span
@@ -99,17 +93,15 @@
           </a>
         </div>
 
-        <!-- put wave thing here if you want it to be relative to gigachad title -->
+        <!-- put wave thing here if you want it to be relative to gigachad title and change to relative, there is a bug where the animation cuts off at the top of the div tho -->
       </div>
     </div>
 
     <!--Main-->
     <div class="container mx-auto flex flex-wrap flex-col md:flex-row items-center">
 
-      <!-- subtitle and newsletter box -->
-
       <!-- 2 col container  -->
-      <div class="w-full md:w-1/2 p-20 mt-10">
+      <div class="md:w-1/2 p-20 mt-10 wow bounceInLeft">
         <h1 class="my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight">
           A thank you to
           <span class="bg-clip-text text-transparent bg-gradient-to-r from-white via-pink-500 to-purple-500">
@@ -122,24 +114,30 @@
         </p>
       </div>
 
-      <div class="w-full md:w-1/2 ">
-        <form class="bg-gray-900 bg-opacity-75 px-8 pt-6 pb-8 mb-4 mx-auto rounded-2xl">
-          <div class="mb-4 mx-auto text-center">
-            <p class="p-10 mb-8 text-white">This is the place to write one or two sentences about what faucets are and
-              why donating back your test eth makes everyone's life easier.</p>
-            <!-- three buttons -->
-            <div class="grid grid-cols-3">
-              <a href="/gallery" target="_blank" class="mx-5">
-                <button
-                  class="mx-auto opacity-100 bg-opacity-100 bg-gradient-to-r from-pink-900 to-purple-800 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
-                  type="button">
-                  Gallery
-                </button>
-              </a>
+      <div class="md:w-1/2">
+        <div class="bg-gray-900 bg-opacity-75 px-4 pt-6 pb-6 mb-2 mx-auto rounded-2xl border-2 border-gray-500 wow bounceInRight">
+          <div class="mb-4 mx-auto text-center">  
+            <p class="p-6 mb-8 text-white">
+              Devs need test eth to play around with. After using test eth, it's nice to give it back as it makes the faucet managers happy.
+              We drop NFT art to people who give back test eth to testnet faucets.
+              </p>
+            <a href="https://faucetlink.to/" target="_blank" class="mx-5">
               <button
+                class="mx-auto bg-gradient-to-r from-purple-900 to-pink-800 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-2"
+                type="button">
+                Donate
+              </button>
+            </a>
+            <button
                 class="mx-auto opacity-100 bg-opacity-100 bg-gradient-to-r from-pink-900 to-purple-800 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
                 type="button" onclick="alert('Coming soon!')">
                 Mint
+            </button>
+            <a href="/gallery" target="_blank" class="mx-5">
+              <button
+                class="mx-auto opacity-100 bg-opacity-100 bg-gradient-to-r from-pink-900 to-purple-800 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out m-2"
+                type="button">
+                Gallery
               </button>
 
               <a href="https://faucetlink.to/" target="_blank" class="mx-5">
@@ -151,7 +149,7 @@
               </a>
             </div>
           </div>
-        </form>
+        </div>
       </div>
     </div>
 
@@ -161,23 +159,23 @@
 
 
   <!-- wallet list -->
-  <section class="w-1/2 mx-auto px-8 pt-6 pb-8 mb-4 rounded-2xl">
+  <div class="mx-auto pb-8 mb-4 rounded-2xl">
 
 
     <!-- ===== list start ===== -->
-    <div class="max-w-xl mx-auto rounded-lg shadow-lg p-4 text-center text-2xl font-bold text-white min-w-full">
+    <div class="max-w-xl mx-auto rounded-lg shadow-lg p-4 text-center text-2xl font-bold text-white min-w-min">
 
       <div class="flow-root">
         <ul role="list" class="-my-5 ">
 
-          <!-- currently displaying 0th to 20th  -->
-          {% for address in addresses[0:20] %}
+          <!-- currently displaying 0th to 50th  -->
+          {% for address in addresses[0:50] %}
           <li class="my-3 ">
 
             <!-- left/right bouncein logic -->
             {% if loop.index % 2 == 0 %}
             <div
-              class="flex items-center space-x-4 py-3 px-3 rounded-xl bg-gray-900 opacity-75 border-2 border-gray-500 wow bounceInRight"
+              class="flex items-center space-x-4 py-3 px-3 rounded-xl bg-gray-900 opacity-75 border-2 border-gray-500 wow bounceInRight bg-opacity-75 pt-6 pb-6 mb-2 mx-auto"
               data-wow-delay="0s" data-wow-duration="1.5s">
               {% else %}
               <div
@@ -192,9 +190,9 @@
                   <canvas width="42" height="42" data-jdenticon-value="{{ address['address'] }}"></canvas>
                   <!-- end medals and identicon logic -->
                 </div>
-                <div class="flex-1">
+                <div class="flex-1 break-all">
 
-                  <p class="text-sm font-medium text-white truncate">
+                  <p class="text-sm font-medium text-white">
                     {% if loop.index == 1 %}🥇
                     {% elif loop.index == 2 %}🥈
                     {% elif loop.index == 3 %}🥉
@@ -259,15 +257,7 @@
         </ul>
       </div>
 
-      <!-- view more button but can't figure out logic with jinja
-      <div class="mt-6">
-        <a href="#"
-          class="w-full flex justify-center items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
-          View all </a>
-      </div>    -->
-
-      <!-- ===== list end ===== -->
-  </section>
+    </div>
 
   </div>
 
