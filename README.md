@@ -2,6 +2,12 @@
 Waterdrop is a celebration of the good actors in the blockchain space.
 Check out the gallery [here](https://faucetdonors.xyz/gallery)
 
+## Gallery
+
+![Water Droplets](https://faucetdonors.xyz/i/314)
+![Water Droplets](https://faucetdonors.xyz/i/953)
+![Water Droplets](https://faucetdonors.xyz/i/246)
+![Water Droplets](https://faucetdonors.xyz/i/218)
 
 ## Running it
 0. (install python & node.js locally)
@@ -16,14 +22,3 @@ Comment: isn't this ```python -m venv .venv```?
 5. navigate to http://127.0.0.1:5000/
 
 Comment: ```npm run build-css``` and in new terminal ```python app.py```
-
-
-### Gallery
-
-
-## Gallery
-
-![Water Droplets](https://faucetdonors.xyz/i/314)
-![Water Droplets](https://faucetdonors.xyz/i/953)
-![Water Droplets](https://faucetdonors.xyz/i/246)
-![Water Droplets](https://faucetdonors.xyz/i/218)
